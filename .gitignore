@@ -1,0 +1,18 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Files and folders specific to the development environment
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Environment configuration files
+.env
+
+# RSA keys generated
+rsa_public
+rsa_secret
+rsa_private
