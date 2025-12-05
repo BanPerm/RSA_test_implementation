@@ -40,10 +40,10 @@ def save_secret_key(d: int, n: int) -> None:
         n: The modulus of the private key.
 
     """
-    f = Path.open("rsa_secret", "w")
-    dico = {"n": n, "d": d}
-    json.dump(dico, f, indent=2)
-    f.close()
+    file_path = Path("rsa_secret")
+    with file_path.open("w") as f:
+        dico = {"n": n, "d": d}
+        json.dump(dico, f, indent=2)
 
 def load_secret_key() -> tuple[int,int]:
     """Load the RSA private key from a JSON file.
@@ -53,7 +53,8 @@ def load_secret_key() -> tuple[int,int]:
 
     """
     try:
-        f = Path.open("rsa_secret")
+        file_path = Path("rsa_secret")
+        f = file_path.open()
         r = json.load(f)
         return r["d"], r["n"]
     except FileNotFoundError:
@@ -69,10 +70,10 @@ def save_public_key(e: int, n: int) -> None:
         n: The modulus of the public key.
 
     """
-    f = Path.open("rsa_public", "w")
-    dico = {"n": n, "e": e}
-    json.dump(dico, f, indent=2)
-    f.close()
+    file_path = Path("rsa_public")
+    with file_path.open("w") as f:
+        dico = {"n": n, "e": e}
+        json.dump(dico, f, indent=2)
 
 #Fonction de récupération de cle public
 def load_public_key() -> tuple[int,int]:
@@ -83,7 +84,8 @@ def load_public_key() -> tuple[int,int]:
 
     """
     try:
-        f = Path.open("rsa_public")
+        file_path = Path("rsa_public")
+        f = file_path.open()
         r = json.load(f)
         return r["e"], r["n"]
     except FileNotFoundError:
